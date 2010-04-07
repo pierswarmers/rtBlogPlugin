@@ -1,0 +1,16 @@
+_blog_page:
+  enabled:     true
+
+<?php if(sfConfig::get('app_gn_blog_is_private', false)): ?>
+
+#_blog_page:
+#  enabled:     true
+
+<?php else: ?>
+
+#index:
+#  enabled:     true
+#show:
+#  enabled:     true
+
+<?php endif; ?>

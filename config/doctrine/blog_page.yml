@@ -1,0 +1,5 @@
+gnBlogPage:
+
+  inheritance:
+    type:              concrete
+    extends:           gnPage
