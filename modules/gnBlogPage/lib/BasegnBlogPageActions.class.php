@@ -41,7 +41,7 @@ class BasegnBlogPageActions extends sfActions
   {
     $this->setPublicTemplate();
     
-    $query = Doctrine::getTable('gnBlogPage')->getQuery();
+    $query = Doctrine::getTable('gnBlogPage')->addNotDeletedQuery();
     $query->orderBy('page.id DESC');
     
     if(!$this->isAdmin())
