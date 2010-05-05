@@ -45,7 +45,15 @@
     </div>
   </fieldset>
   
-
+  <?php if(gnSiteToolkit::isMultiSiteEnabled()): ?>
+  <fieldset class="gn-form-collapse">
+    <legend onclick="$('#gnPanelOrganisation').slideToggle();"><?php echo __('Organisation') ?></legend>
+    <div id="gnPanelOrganisation" style="display:none;">
+      <?php echo render_form_row($form['site_id']) ?>
+    </div>
+  </fieldset>
+  <?php endif; ?>
+  
   <fieldset class="gn-form-collapse">
     <legend onclick="$('#gnPanelAvailability').slideToggle();"><?php echo __('Availability') ?></legend>
     <div id="gnPanelAvailability" style="display:none;">
