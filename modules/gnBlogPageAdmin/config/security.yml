@@ -1,0 +1,5 @@
+<?php $admin_cred = sfConfig::get('app_gn_wiki_admin_credential', 'admin_blog') . "\n" ?>
+
+all:
+  is_secure: true
+  credentials: <?php echo $admin_cred ?>

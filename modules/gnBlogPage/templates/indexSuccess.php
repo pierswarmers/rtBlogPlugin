@@ -7,7 +7,7 @@
   <?php if(count($pager->getResults()) > 0): ?>
   <div class="gn-blog-page-index-list">
     <?php foreach ($pager->getResults() as $gn_blog_page): ?>
-    <div class="gn-blog-page-index-item <?php echo !is_null($gn_blog_page->getDeletedAt())  ? 'deleted' : '' ?>">
+    <div class="gn-blog-page-index-item">
       <<?php echo $heading_tag ?>><?php echo link_to($gn_blog_page->getTitle(), 'gn_blog_page_show',$gn_blog_page) ?></<?php echo $heading_tag ?>>
       <?php if(sfConfig::get('app_gn_blog_index_mode', 'full') === 'full'): ?>
       <?php include_partial('blog_page', array('gn_blog_page' => $gn_blog_page, 'sf_cache_key' => $gn_blog_page->getId())) ?>

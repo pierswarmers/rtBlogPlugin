@@ -72,58 +72,12 @@ class BasegnBlogPageActions extends sfActions
       $this->forward('gnGuardAuth','secure');
     }
 
-    if(!is_null($this->gn_blog_page->getDeletedAt()) && !$this->isAdmin())
-    {
-      $this->forward404();
-    }
-
     $this->updateResponse($this->gn_blog_page);
   }
 
   private function updateResponse(gnBlogPage $page)
   {
     gnResponseToolkit::setCommonMetasFromPage($page, $this->getUser(), $this->getResponse());
-  }
-
-  public function executeRevert(sfWebRequest $request)
-  {
-    $this->gn_blog_page = $this->getRoute()->getObject();
-    $this->gn_blog_page->Translation[$this->getUser()->getCulture()]->revert($request->getParameter('revert_to'));
-    $this->gn_blog_page->save();
-    $this->getUser()->setFlash('notice', 'Reverted to version ' . $request->getParameter('revert_to'), false);
-    $this->clearCache();
-    $this->redirect('gn_blog_page_show',$this->gn_blog_page);
-  }
-
-  public function executeVersions(sfWebRequest $request)
-  {
-    $this->gn_blog_page = $this->getRoute()->getObject();
-  }
-
-  public function executeCompare(sfWebRequest $request)
-  {
-    $this->gn_blog_page = $this->getRoute()->getObject();
-    $this->current_version = $this->gn_blog_page->Translation[$this->getUser()->getCulture()]->version;
-
-    if(!$request->hasParameter('version1') || !$request->hasParameter('version2'))
-    {
-      $this->getUser()->setFlash('error', 'Please select two versions to compare.', false);
-      $this->redirect('gnBlogPage/versions?id='.$this->gn_blog_page->getId());
-    }
-
-    $this->version_1 = $request->getParameter('version1');
-    $this->version_2 = $request->getParameter('version2');
-    $t = $this->gn_blog_page->Translation[$this->getUser()->getCulture()];
-    $this->versions = array();
-
-    $this->versions[1] = array(
-      'title' => $t->revert($this->version_1)->title,
-      'content' => $t->revert($this->version_1)->content
-    );
-    $this->versions[2] = array(
-      'title' => $t->revert($this->version_2)->title,
-      'content' => $t->revert($this->version_2)->content
-    );
   }
 
   public function executeNew(sfWebRequest $request)

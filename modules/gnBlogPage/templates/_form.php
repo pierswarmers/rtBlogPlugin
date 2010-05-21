@@ -1,7 +1,7 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 <?php use_stylesheet('/gnCorePlugin/vendor/jquery/css/tools/jquery.tools.css'); ?>
-<?php use_javascript('/gnCorePlugin/js/jquery-1.4.2.min.js') ?>
+<?php use_javascript('/gnCorePlugin/vendor/jquery/js/jquery.min.js') ?>
 <?php use_javascript('/gnCorePlugin/vendor/jquery/js/jquery.tools.min.js', 'last'); ?>
 <?php use_helper('I18N', 'gnForm') ?>
 
