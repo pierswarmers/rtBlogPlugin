@@ -40,66 +40,97 @@
           <?php echo $form['content'] ?>
         </td>
       </tr>
-      <tr>
-        <th><?php echo $form['description']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['description']->renderError() ?>
-          <?php echo $form['description'] ?>
-          <?php echo $form['description']->renderHelp() ?>
-        </td>
-      </tr>
-      <?php if(gnSiteToolkit::isMultiSiteEnabled()): ?>
-      <tr>
-        <th><?php echo $form['site_id']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['site_id']->renderError() ?>
-          <?php echo $form['site_id'] ?>
-        </td>
-      </tr>
-      <?php endif; ?>
-      <tr>
-        <th><?php echo $form['published']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['published']->renderError() ?>
-          <?php echo $form['published'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['published_from']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['published_from']->renderError() ?>
-          <?php echo $form['published_from'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['published_to']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['published_to']->renderError() ?>
-          <?php echo $form['published_to'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['comment_status']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['comment_status']->renderError() ?>
-          <?php echo $form['comment_status'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['searchable']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['searchable']->renderError() ?>
-          <?php echo $form['searchable'] ?>
-          <?php echo $form['searchable']->getParent()->getWidget()->getHelp('searchable') ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['slug']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['slug']->renderError() ?>
-          <?php echo $form['slug'] ?>
-        </td>
-      </tr>
     </tbody>
   </table>
+
+
+  <div class="gn-admin-toggle-panel">
+    <h2><?php echo __('Publish Status') ?></h2>
+    <table class="gn-admin-toggle-panel-content">
+      <tbody>
+        <tr>
+          <th><?php echo $form['published']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['published']->renderError() ?>
+            <?php echo $form['published'] ?>
+          </td>
+        </tr>
+        <tr>
+          <th><?php echo $form['published_from']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['published_from']->renderError() ?>
+            <?php echo $form['published_from'] ?>
+          </td>
+        </tr>
+        <tr>
+          <th><?php echo $form['published_to']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['published_to']->renderError() ?>
+            <?php echo $form['published_to'] ?>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gn-admin-toggle-panel">
+    <h2><?php echo __('Metadata and SEO') ?></h2>
+    <table class="gn-admin-toggle-panel-content">
+      <tbody>
+        <tr>
+          <th><?php echo $form['description']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['description']->renderError() ?>
+            <?php echo $form['description'] ?>
+          </td>
+        </tr>
+        <tr>
+          <th><?php echo $form['tags']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['tags']->renderError() ?>
+            <?php echo $form['tags'] ?>
+          </td>
+        </tr>
+        <tr>
+          <th><?php echo $form['searchable']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['searchable']->renderError() ?>
+            <?php echo $form['searchable'] ?>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gn-admin-toggle-panel">
+    <h2><?php echo __('Comments') ?></h2>
+    <table class="gn-admin-toggle-panel-content">
+      <tbody>
+        <tr>
+          <th><?php echo $form['comment_status']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['comment_status']->renderError() ?>
+            <?php echo $form['comment_status'] ?>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <?php if(isset($form['site_id'])): ?>
+  <div class="gn-admin-toggle-panel">
+    <h2><?php echo __('Site Selection') ?></h2>
+    <table class="gn-admin-toggle-panel-content">
+      <tbody>
+        <tr>
+          <th><?php echo $form['site_id']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['site_id']->renderError() ?>
+            <?php echo $form['site_id'] ?>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <?php endif; ?>
 </form>
