@@ -25,8 +25,7 @@ class gnBlogPageAdminActions extends sfActions
 
   public function executeIndex(sfWebRequest $request)
   {
-    $query = Doctrine::getTable('gnBlogPage')->addNotDeletedQuery();
-    $query = Doctrine::getTable('gnBlogPage')->addSiteQuery($query);
+    $query = Doctrine::getTable('gnBlogPage')->addSiteQuery();
     $query->orderBy('page.id DESC');
 
     $this->gn_blog_pages = $query->execute();
