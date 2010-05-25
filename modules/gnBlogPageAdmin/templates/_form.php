@@ -116,6 +116,28 @@
     </table>
   </div>
 
+  <div class="gn-admin-toggle-panel">
+    <h2><?php echo __('Author Details') ?></h2>
+    <table class="gn-admin-toggle-panel-content">
+      <tbody>
+        <tr>
+          <th><?php echo $form['author_name']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['author_name']->renderError() ?>
+            <?php echo $form['author_name'] ?>
+          </td>
+        </tr>
+        <tr>
+          <th><?php echo $form['author_email']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['author_email']->renderError() ?>
+            <?php echo $form['author_email'] ?>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <?php if(isset($form['site_id'])): ?>
   <div class="gn-admin-toggle-panel">
     <h2><?php echo __('Site Selection') ?></h2>

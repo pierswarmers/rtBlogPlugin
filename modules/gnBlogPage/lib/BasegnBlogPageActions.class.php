@@ -52,6 +52,52 @@ class BasegnBlogPageActions extends sfActions
     $this->pager->setPage($request->getParameter('page', 1));
     $this->pager->init();
   }
+
+  public function executeFeed(sfWebRequest $request)
+  {
+    $format = $request->getParameter('format');
+
+    if($format === 'atom')
+    {
+      $format = 'atom1';
+    }
+    elseif($format === 'rss')
+    {
+      $format = 'rss201';
+    }
+
+    $feed = sfFeedPeer::newInstance($format);
+
+    $feed->setTitle(sfConfig::get('app_gn_blog_title', 'Latest News'));
+    $feed->setLink('http://'.gnSiteToolkit::getCurrentDomain());
+    $feed->setAuthorEmail(sfConfig::get('app_gn_blog_author_email'));
+    $feed->setAuthorName(sfConfig::get('app_gn_blog_author_name', 'News Editor'));
+
+//    $feedImage = new sfFeedImage();
+//    $feedImage->setFavicon('http://'.gnSiteToolkit::getCurrentDomain().'/favicon.ico');
+//    $feed->setImage($feedImage);
+
+    $query = Doctrine::getTable('gnBlogPage')->addPublishedQuery();
+    $query->limit(20)
+          ->orderBy('page.id DESC');
+    $posts = $query->execute();
+    
+    foreach ($posts as $post)
+    {
+      $item = new sfFeedItem();
+      $item->setTitle($post->getTitle());
+      $item->setLink('@gn_blog_page_show?id='.$post->getId().'&slug='.$post->getSlug());
+      $item->setAuthorName($post->getAuthorName());
+      $item->setAuthorEmail($post->getAuthorEmail());
+      $item->setPubdate(strtotime($post->getCreatedAt()));
+      $item->setUniqueId($post->getSlug());
+      $item->setDescription($post->getDescription());
+
+      $feed->addItem($item);
+    }
+
+    $this->feed = $feed;
+  }
   
   public function executeShow(sfWebRequest $request)
   {    

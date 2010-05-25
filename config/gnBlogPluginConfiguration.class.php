@@ -31,14 +31,15 @@ class gnBlogPluginConfiguration extends sfPluginConfiguration
     );
 
     $routing->prependRoute(
-      'gn_blog_page_index_admin',
-      new sfRoute('/blog_admin',array('module' => 'gnBlogPage', 'action' => 'index_admin'))
-    );
+      'gn_blog_page_feed',
+      new sfRoute('/blog/feed.:format',
+              array('module' => 'gnBlogPage', 'action' => 'feed', 'format' => 'atom1'),
+              array('format' => 'atom1|rss10|rss091|rss201|rss|atom')));
 
     $routing->prependRoute(
       'gn_blog_page_show',
       new sfDoctrineRoute(
-        '/blog/:slug/:id',
+        '/blog/:id/:slug',
           array('module' => 'gnBlogPage', 'action' => 'show'),
           array('id' => '\d+', 'sf_method' => array('get')),
           array('model' => 'gnBlogPage', 'type' => 'object')

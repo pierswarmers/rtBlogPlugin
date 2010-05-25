@@ -9,5 +9,8 @@ index:
   enabled:     true
 show:
   enabled:     true
+feed:
+  enabled:     true
+  with_layout: true
 
 <?php endif; ?>

@@ -1,9 +1,9 @@
 <?php use_helper('I18N', 'Date', 'gnText', 'gnForm', 'gnDate', 'gnSite') ?>
 
-<?php $heading_tag = sfConfig::get('app_gn_blog_index_title', false) ? 'h2' : 'h1' ?>
+<?php $heading_tag = sfConfig::has('app_gn_blog_title') ? 'h2' : 'h1' ?>
 <div class="gn-blog-page-index">
-  <?php if(sfConfig::get('app_gn_blog_index_title', false)): ?>
-  <h1><?php echo __(sfConfig::get('app_gn_blog_index_title', 'Latest News')) ?></h1>
+  <?php if(sfConfig::has('app_gn_blog_title')): ?>
+  <h1><?php echo __(sfConfig::get('app_gn_blog_title', 'Latest News')) ?></h1>
   <?php endif; ?>
   <?php if(count($pager->getResults()) > 0): ?>
   <div class="gn-blog-page-index-list">
