@@ -43,7 +43,6 @@
     </tbody>
   </table>
 
-
   <div class="gn-admin-toggle-panel">
     <h2><?php echo __('Publish Status') ?></h2>
     <table class="gn-admin-toggle-panel-content">

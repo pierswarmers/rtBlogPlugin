@@ -1,4 +1,5 @@
-<?php include_partial('use'); include_partial('tools'); ?>
+<?php use_helper('I18N', 'Date', 'gnText', 'gnForm', 'gnDate', 'gnSite') ?>
+
 <?php $heading_tag = sfConfig::get('app_gn_blog_index_title', false) ? 'h2' : 'h1' ?>
 <div class="gn-blog-page-index">
   <?php if(sfConfig::get('app_gn_blog_index_title', false)): ?>
@@ -14,12 +15,11 @@
       <?php elseif(sfConfig::get('app_gn_blog_index_mode') === 'description'): ?>
       <p><?php echo $gn_blog_page->getDescription(); ?></p>
       <?php endif; ?>
-      <?php include_partial('meta_data', array('gn_blog_page' => $gn_blog_page)); ?>
     </div>
     <?php endforeach; ?>
   </div>
   <?php else: ?>
-  <p class="notice"><?php echo __('No pages available yet, please visit again later.') ?></p>
+  <p class="notice"><?php echo __('No posts available yet, please visit again later.') ?></p>
   <?php endif; ?>
 
   <?php if ($pager->haveToPaginate()): ?>

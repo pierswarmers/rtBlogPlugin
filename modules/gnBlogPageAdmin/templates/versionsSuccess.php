@@ -2,6 +2,12 @@
         
 <h1><?php echo __('Listing Versions') ?></h1>
 
+<?php slot('gn-side') ?>
+<p>
+  <button type="submit" class="button positive" onclick="$('#gnBlogPageForm').submit()"><?php echo __('Compare selection') ?></button>
+  <?php echo button_to(__('Cancel'),'gnBlogPageAdmin/index', array('class' => 'button cancel')) ?>
+</p>
+<?php end_slot(); ?>
 
 <form id="gnBlogPageForm" action="<?php echo url_for('gnBlogPageAdmin/compare?id='.$gn_blog_page->getId()) ?>">
   <table class="stretch">
@@ -32,10 +38,3 @@
     </tbody>
   </table>
 </form>
-
-<?php slot('gn-side') ?>
-<p>
-  <button type="submit" class="button positive" onclick="$('#gnBlogPageForm').submit()"><?php echo __('Compare selection') ?></button>
-  <?php echo button_to(__('Cancel'),'gnBlogPageAdmin/index', array('class' => 'button cancel')) ?>
-</p>
-<?php end_slot(); ?>

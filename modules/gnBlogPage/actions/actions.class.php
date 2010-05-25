@@ -19,5 +19,4 @@ require_once(dirname(__FILE__).'/../lib/BasegnBlogPageActions.class.php');
  */
 class gnBlogPageActions extends BasegnBlogPageActions
 {
-
 }

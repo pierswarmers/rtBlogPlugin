@@ -2,6 +2,10 @@
 
 <h1><?php echo __('Comparing Version') ?> <?php echo $version_1 ?> to <?php echo $version_2 ?></h1>
 
+<?php slot('gn-side') ?>
+<p><?php echo button_to(__('Cancel'),'gnBlogPageAdmin/versions?id='.$gn_blog_page->getId(), array('class' => 'button cancel')) ?></p>
+<?php end_slot(); ?>
+
 <table class="gn-version-comparison">
   <thead>
     <tr>
@@ -32,9 +36,3 @@
       </tr>
   </tbody>
 </table>
-
-<?php slot('gn-side') ?>
-<p>
-  <?php echo button_to(__('Cancel'),'gnBlogPageAdmin/versions?id='.$gn_blog_page->getId(), array('class' => 'button cancel')) ?>
-</p>
-<?php end_slot(); ?>

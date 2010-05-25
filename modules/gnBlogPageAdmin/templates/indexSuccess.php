@@ -2,6 +2,10 @@
 
 <h1><?php echo __('Listing Posts') ?></h1>
 
+<?php slot('gn-side') ?>
+<p><?php echo button_to(__('Create new post'), 'gnBlogPageAdmin/new', array('class' => 'button positive')) ?></p>
+<?php end_slot(); ?>
+
 <table>
   <thead>
     <tr>
@@ -30,7 +34,3 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-
-<?php slot('gn-side') ?>
-<p><?php echo button_to(__('Create new post'), 'gnBlogPageAdmin/new', array('class' => 'button positive')) ?></p>
-<?php end_slot(); ?>
