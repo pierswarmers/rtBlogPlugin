@@ -1,40 +1,10 @@
-<?php $admin_cred = sfConfig::get('app_gn_blog_admin_credential', 'admin_blog') . "\n" ?>
+<?php $cred = sfConfig::get('app_gn_blog_visitor_credential', 'visitor_blog') . "\n" ?>
+
+<?php if(sfConfig::get('app_gn_blog_is_private', false)): ?>
 
 all:
   is_secure: true
 compare:
-  credentials: <?php echo $admin_cred ?>
-create:
-  credentials: <?php echo $admin_cred ?>
-delete:
-  credentials: <?php echo $admin_cred ?>
-edit:
-  credentials: <?php echo $admin_cred ?>
-new:
-  credentials: <?php echo $admin_cred ?>
-revert:
-  credentials: <?php echo $admin_cred ?>
-undelete:
-  credentials: <?php echo $admin_cred ?>
-update:
-  credentials: <?php echo $admin_cred ?>
-versions:
-  credentials: <?php echo $admin_cred ?>
-edit:
-  credentials: <?php echo $admin_cred ?>
-
-<?php if(sfConfig::get('app_gn_blog_is_private', false)): ?>
-
-show:
-  is_secure: true
-index:
-  is_secure: true
-
-<?php else: ?>
-
-show:
-  is_secure: false
-index:
-  is_secure: false
+  credentials: <?php echo $cred ?>
 
 <?php endif; ?>
