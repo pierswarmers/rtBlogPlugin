@@ -12,5 +12,8 @@
  */
 abstract class PlugingnBlogPage extends BasegnBlogPage
 {
-
+  public function getTypeNice()
+  {
+    return 'Blog Post';
+  }
 }
