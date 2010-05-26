@@ -1,0 +1,5 @@
+<?php $cred = sfConfig::get('app_rt_wiki_admin_credential', 'admin_blog') . "\n" ?>
+
+all:
+  is_secure: true
+  credentials: <?php echo $cred ?>

@@ -1,10 +1,10 @@
-gnBlogPage:
+rtBlogPage:
   actAs:
-    gnSearchTemplate:
+    rtSearchTemplate:
       fields:      [title, content, description, author_name]
   columns:
     author_name:      string(255)
     author_email:     string(255)
   inheritance:
     type:              concrete
-    extends:           gnPage
+    extends:           rtPage

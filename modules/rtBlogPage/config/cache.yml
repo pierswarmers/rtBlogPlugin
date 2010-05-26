@@ -1,0 +1,18 @@
+<?php if(sfConfig::get('app_rt_blog_is_private', false)): ?>
+
+_blog_page:
+  enabled:     true
+
+<?php else: ?>
+
+index:
+  enabled:     true
+show:
+  enabled:     true
+feed:
+  enabled:     true
+  with_layout: true
+_latest:
+  enabled:     true
+
+<?php endif; ?>
