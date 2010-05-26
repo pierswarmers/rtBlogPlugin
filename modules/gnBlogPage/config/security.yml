@@ -1,10 +1,16 @@
-<?php $cred = sfConfig::get('app_gn_blog_visitor_credential', 'visitor_blog') . "\n" ?>
+<?php
+
+if(sfConfig::has('app_gn_blog_visitor_credential'))
+{
+  $cred = sfConfig::get('app_gn_blog_visitor_credential') . "\n";
+}
+
+?>
 
 <?php if(sfConfig::get('app_gn_blog_is_private', false)): ?>
-
 all:
   is_secure: true
-compare:
+  <?php if (isset($cred)): ?>
   credentials: <?php echo $cred ?>
-
+  <?php endif; ?>
 <?php endif; ?>
