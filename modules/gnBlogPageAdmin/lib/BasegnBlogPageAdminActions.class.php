@@ -134,7 +134,7 @@ class BasegnBlogPageAdminActions extends sfActions
     
     if ($cache)
     {
-      $cache->remove('gnBlogPage/index?sf_format=*'); // index page
+      $cache->remove('gnBlogPage/index'); // index page
       $cache->remove('gnBlogPage/index?page=*'); // index with page
       $cache->remove('gnBlogPage/feed?format=*'); // feed
       if($gn_blog_page)

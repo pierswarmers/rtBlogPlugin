@@ -46,16 +46,6 @@ class gnBlogPluginConfiguration extends sfPluginConfiguration
       )
     );
 
-    $routing->prependRoute('gn_page', new sfDoctrineRouteCollection(array(
-      'name'                => 'gn_blog_page',
-      'model'               => 'gnBlogPage',
-      'module'              => 'gnBlogPage',
-      'prefix_path'         => 'blog',
-      'with_wildcard_routes' => true,
-      'collection_actions'  => array('filter' => 'post', 'batch' => 'post', 'page' => 'get'),
-      'requirements'        => array(),
-    )));
-
     $routing->prependRoute(
       'gn_blog_page_pagination',
       new sfRoute('/blog/page/:page',array('module' => 'gnBlogPage', 'action' => 'index'))
