@@ -137,6 +137,8 @@ class BasegnBlogPageAdminActions extends sfActions
       $cache->remove('gnBlogPage/index'); // index page
       $cache->remove('gnBlogPage/index?page=*'); // index with page
       $cache->remove('gnBlogPage/feed?format=*'); // feed
+      $cache->remove('@sf_cache_partial?module=gnBlogPage&action=_latest&sf_cache_key=*');
+      
       if($gn_blog_page)
       {
         $cache->remove(sprintf('gnBlogPage/show?id=%s&slug=%s', $gn_blog_page->getId(), $gn_blog_page->getSlug())); // show page
