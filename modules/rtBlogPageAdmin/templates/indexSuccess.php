@@ -1,4 +1,4 @@
-<?php use_helper('I18n', 'rtAdmin') ?>
+<?php use_helper('I18N', 'rtAdmin') ?>
 
 <h1><?php echo __('Listing Posts') ?></h1>
 

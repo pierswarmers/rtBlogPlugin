@@ -1,4 +1,4 @@
-<?php use_helper('I18n', 'Date', 'rtAdmin') ?>
+<?php use_helper('I18N', 'Date', 'rtAdmin') ?>
         
 <h1><?php echo __('Listing Versions') ?></h1>
 
