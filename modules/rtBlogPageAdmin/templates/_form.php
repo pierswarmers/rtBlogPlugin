@@ -138,11 +138,18 @@
     </table>
   </div>
 
-  <?php if(isset($form['site_id'])): ?>
   <div class="rt-admin-toggle-panel">
-    <h2><?php echo __('Site Selection') ?></h2>
+    <h2><?php echo __('Location and Referencing') ?></h2>
     <table class="rt-admin-toggle-panel-content">
       <tbody>
+        <tr>
+          <th><?php echo $form['slug']->renderLabel() ?></th>
+          <td>
+            <?php echo $form['slug']->renderError() ?>
+            <?php echo $form['slug'] ?>
+          </td>
+        </tr>
+      <?php if(isset($form['site_id'])): ?>
         <tr>
           <th><?php echo $form['site_id']->renderLabel() ?></th>
           <td>
@@ -150,8 +157,8 @@
             <?php echo $form['site_id'] ?>
           </td>
         </tr>
+      <?php endif; ?>
       </tbody>
     </table>
   </div>
-  <?php endif; ?>
 </form>
