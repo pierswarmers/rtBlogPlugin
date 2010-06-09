@@ -2,8 +2,8 @@
 
 <h1><?php echo __('Listing Posts') ?></h1>
 
-<?php slot('rt-side') ?>
-<p><?php echo button_to(__('Create new post'), 'rtBlogPageAdmin/new', array('class' => 'button positive')) ?></p>
+<?php slot('rt-tools') ?>
+<?php include_partial('rtAdmin/standard_modal_tools', array('object' => new rtBlogPage))?>
 <?php end_slot(); ?>
 
 <table>

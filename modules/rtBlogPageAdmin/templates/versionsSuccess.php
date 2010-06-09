@@ -2,14 +2,11 @@
         
 <h1><?php echo __('Listing Versions') ?></h1>
 
-<?php slot('rt-side') ?>
-<p>
-  <button type="submit" class="button positive" onclick="$('#rtBlogPageForm').submit()"><?php echo __('Compare selection') ?></button>
-  <?php echo button_to(__('Cancel'),'rtBlogPageAdmin/index', array('class' => 'button cancel')) ?>
-</p>
+<?php slot('rt-tools') ?>
+<?php include_partial('rtAdmin/standard_modal_tools', array('object' => $rt_blog_page))?>
 <?php end_slot(); ?>
 
-<form id="rtBlogPageForm" action="<?php echo url_for('rtBlogPageAdmin/compare?id='.$rt_blog_page->getId()) ?>">
+<form id="rtAdminForm" action="<?php echo url_for('rtBlogPageAdmin/compare?id='.$rt_blog_page->getId()) ?>">
   <table class="stretch">
     <thead>
       <tr>

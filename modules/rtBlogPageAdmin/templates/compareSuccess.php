@@ -2,8 +2,8 @@
 
 <h1><?php echo __('Comparing Version') ?> <?php echo $version_1 ?> to <?php echo $version_2 ?></h1>
 
-<?php slot('rt-side') ?>
-<p><?php echo button_to(__('Cancel'),'rtBlogPageAdmin/versions?id='.$rt_blog_page->getId(), array('class' => 'button cancel')) ?></p>
+<?php slot('rt-tools') ?>
+<?php include_partial('rtAdmin/standard_modal_tools', array('object' => $rt_blog_page))?>
 <?php end_slot(); ?>
 
 <table class="rt-version-comparison">

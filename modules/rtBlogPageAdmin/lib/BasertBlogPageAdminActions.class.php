@@ -86,7 +86,7 @@ class BasertBlogPageAdminActions extends sfActions
     if(!$request->hasParameter('version1') || !$request->hasParameter('version2'))
     {
       $this->getUser()->setFlash('error', 'Please select two versions to compare.', false);
-      $this->redirect('rtBlogPage/versions?id='.$this->rt_blog_page->getId());
+      $this->redirect('rtBlogPageAdmin/versions?id='.$this->rt_blog_page->getId());
     }
 
     $this->version_1 = $request->getParameter('version1');
@@ -124,6 +124,17 @@ class BasertBlogPageAdminActions extends sfActions
     {
       $rt_blog_page = $form->save();
       $this->clearCache($rt_blog_page);
+
+      $action = $request->getParameter('rt_post_save_action', 'index');
+
+      if($action == 'edit')
+      {
+        $this->redirect('rtBlogPageAdmin/edit?id='.$rt_blog_page->getId());
+      }elseif($action == 'show')
+      {
+        $this->redirect('rt_blog_page_show',$rt_blog_page);
+      }
+
       $this->redirect('rtBlogPageAdmin/index');
     }
   }
