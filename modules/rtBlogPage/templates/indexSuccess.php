@@ -8,7 +8,8 @@
   <?php if(count($pager->getResults()) > 0): ?>
   <div class="rt-blog-page-index-list">
     <?php foreach ($pager->getResults() as $rt_blog_page): ?>
-    <div class="rt-blog-page-index-item">
+    <div class="rt-blog-page-index-item rt-admin-edit-tools-panel">
+      <?php echo link_to(__('Edit'), 'rtBlogPageAdmin/edit?id='.$rt_blog_page->getId(), array('class' => 'rt-admin-edit-tools-trigger')) ?>
       <<?php echo $heading_tag ?>><?php echo link_to($rt_blog_page->getTitle(), 'rt_blog_page_show',$rt_blog_page) ?></<?php echo $heading_tag ?>>
       <?php if(sfConfig::get('app_rt_blog_index_mode', 'full') === 'full'): ?>
       <?php include_partial('blog_page', array('rt_blog_page' => $rt_blog_page, 'sf_cache_key' => $rt_blog_page->getId())) ?>
