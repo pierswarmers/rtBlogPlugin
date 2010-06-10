@@ -1,7 +1,7 @@
 rtBlogPage:
   actAs:
     rtSearchTemplate:
-      fields:      [title, content, description, author_name]
+      fields:      [title, content, description, author_name, tags_as_string]
   columns:
     author_name:      string(255)
     author_email:     string(255)
