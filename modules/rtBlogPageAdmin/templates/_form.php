@@ -5,7 +5,7 @@
 <?php use_helper('I18N', 'Date', 'rtText', 'rtForm', 'rtDate') ?>
 
 <?php slot('rt-tools') ?>
-<?php include_partial('rtAdmin/standard_modal_tools', array('show_route_handle' => 'rt_blog_page_show', 'object' => $form->getObject()))?>
+<?php include_partial('rtAdmin/standard_modal_tools', array('show_route_handle' => 'admin', 'object' => $form->getObject()))?>
 <?php end_slot(); ?>
 
 <?php slot('rt-side') ?>

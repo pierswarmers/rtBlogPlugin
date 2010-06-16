@@ -25,7 +25,7 @@
       <td><?php echo $rt_blog_page->getCreatedAt() ?></td>
       <td>
         <ul class="rt-admin-tools">
-          <li><?php echo rt_button_show(url_for('rt_blog_page_show', $rt_blog_page)) ?></li>
+          <li><?php echo rt_button_show(url_for('rtBlogPageAdmin/show?id='.$rt_blog_page->getId())) ?></li>
           <li><?php echo rt_button_edit(url_for('rtBlogPageAdmin/edit?id='.$rt_blog_page->getId())) ?></li>
           <li><?php echo rt_button_delete(url_for('rtBlogPageAdmin/delete?id='.$rt_blog_page->getId())) ?></li>
         </ul>

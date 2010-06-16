@@ -30,9 +30,14 @@ class BasertBlogPageAdminActions extends sfActions
 
   public function executeIndex(sfWebRequest $request)
   {
-    $query = Doctrine::getTable('rtBlogPage')->addSiteQuery();
+    $query = Doctrine::getTable('rtBlogPage')->getQuery();
     $query->orderBy('page.id DESC');
     $this->rt_blog_pages = $query->execute();
+  }
+
+  public function executeShow(sfWebRequest $request)
+  {
+    rtSiteToolkit::siteRedirect($this->getrtBlogPage($request));
   }
 
   public function executeNew(sfWebRequest $request)
@@ -132,7 +137,7 @@ class BasertBlogPageAdminActions extends sfActions
         $this->redirect('rtBlogPageAdmin/edit?id='.$rt_blog_page->getId());
       }elseif($action == 'show')
       {
-        $this->redirect('rt_blog_page_show',$rt_blog_page);
+        tSiteToolkit::siteRedirect($rt_blog_page);
       }
 
       $this->redirect('rtBlogPageAdmin/index');
