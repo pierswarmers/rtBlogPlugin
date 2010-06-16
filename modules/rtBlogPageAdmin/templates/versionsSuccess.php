@@ -6,6 +6,8 @@
 <?php include_partial('rtAdmin/standard_modal_tools', array('object' => $rt_blog_page))?>
 <?php end_slot(); ?>
 
+<?php include_partial('rtAdmin/flashes') ?>
+
 <form id="rtAdminForm" action="<?php echo url_for('rtBlogPageAdmin/compare?id='.$rt_blog_page->getId()) ?>">
   <table class="stretch">
     <thead>

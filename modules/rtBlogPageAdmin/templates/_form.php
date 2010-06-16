@@ -12,6 +12,8 @@
 <?php include_component('rtAsset', 'form', array('object' => $form->getObject())) ?>
 <?php end_slot(); ?>
 
+<?php include_partial('rtAdmin/flashes') ?>
+
 <form id ="rtAdminForm" action="<?php echo url_for('rtBlogPageAdmin/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 <?php echo $form->renderHiddenFields(false) ?>
 <?php if (!$form->getObject()->isNew()): ?>

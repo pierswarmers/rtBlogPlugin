@@ -6,6 +6,8 @@
 <?php include_partial('rtAdmin/standard_modal_tools', array('object' => $rt_blog_page))?>
 <?php end_slot(); ?>
 
+<?php include_partial('rtAdmin/flashes') ?>
+
 <table class="rt-version-comparison">
   <thead>
     <tr>

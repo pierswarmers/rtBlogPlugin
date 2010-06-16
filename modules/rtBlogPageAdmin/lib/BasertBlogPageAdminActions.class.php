@@ -142,6 +142,8 @@ class BasertBlogPageAdminActions extends sfActions
 
       $this->redirect('rtBlogPageAdmin/index');
     }
+
+    $this->getUser()->setFlash('default_error', true, false);
   }
 
   private function clearCache($rt_blog_page = null)
