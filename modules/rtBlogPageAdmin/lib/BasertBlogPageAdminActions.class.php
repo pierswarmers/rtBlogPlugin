@@ -137,7 +137,7 @@ class BasertBlogPageAdminActions extends sfActions
         $this->redirect('rtBlogPageAdmin/edit?id='.$rt_blog_page->getId());
       }elseif($action == 'show')
       {
-        tSiteToolkit::siteRedirect($rt_blog_page);
+        rtSiteToolkit::siteRedirect($rt_blog_page);
       }
 
       $this->redirect('rtBlogPageAdmin/index');
