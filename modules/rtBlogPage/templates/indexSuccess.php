@@ -5,7 +5,7 @@
   <h1><?php echo __(sfConfig::get('app_rt_blog_title', 'Latest News')) ?></h1>
 <?php endif; ?>
 <?php if(count($pager->getResults()) > 0): ?>
-  <div class="rt-container rt-conllection">
+  <div class="rt-container rt-collection">
     <?php $i = 1; foreach ($pager->getResults() as $rt_blog_page): ?>
       <div class="rt-list-item rt-list-item-<?php echo $i; ?> rt-admin-edit-tools-panel">
         <?php echo link_to(__('Edit'), 'rtBlogPageAdmin/edit?id='.$rt_blog_page->getId(), array('class' => 'rt-admin-edit-tools-trigger')) ?>
