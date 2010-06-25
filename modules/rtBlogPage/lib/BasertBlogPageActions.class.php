@@ -104,6 +104,8 @@ class BasertBlogPageActions extends sfActions
     $this->rt_blog_page = $this->getRoute()->getObject();
     $this->forward404Unless($this->rt_blog_page);
 
+    rtSiteToolkit::checkSiteReference($this->rt_blog_page);
+
     if(!$this->rt_blog_page->isPublished() && !$this->isAdmin())
     {
       $this->forward('rtGuardAuth','secure');
