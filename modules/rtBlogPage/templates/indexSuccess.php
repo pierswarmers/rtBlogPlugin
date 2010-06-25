@@ -1,6 +1,6 @@
 <?php use_helper('I18N', 'Date', 'rtText', 'rtForm', 'rtDate', 'rtSite') ?>
 <?php $heading_tag = sfConfig::has('app_rt_blog_title') ? 'h2' : 'h1' ?>
-
+<div class="rt-blog-page rt-list rt-primary-container">
 <?php if(sfConfig::has('app_rt_blog_title')): ?>
   <h1><?php echo __(sfConfig::get('app_rt_blog_title', 'Latest News')) ?></h1>
 <?php endif; ?>
@@ -24,3 +24,4 @@
   <p class="notice"><?php echo __('No posts available yet, please visit again later.') ?></p>
 <?php endif; ?>
 <?php include_partial('rtAdmin/pagination_public', array('pager' => $pager)); ?>
+</div>
