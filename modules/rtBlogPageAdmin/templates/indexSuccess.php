@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($rt_blog_pages as $rt_blog_page): ?>
+    <?php foreach ($pager->getResults() as $rt_blog_page): ?>
     <tr>
       <td><a href="<?php echo url_for('rtBlogPageAdmin/edit?id='.$rt_blog_page->getId()) ?>"><?php echo $rt_blog_page->getTitle() ?></a></td>
       <td><?php echo rt_nice_boolean($rt_blog_page->getPublished()) ?></td>
@@ -36,3 +36,5 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+
+<?php include_partial('rtAdmin/pagination', array('pager' => $pager)); ?>

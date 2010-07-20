@@ -31,8 +31,18 @@ class BasertBlogPageAdminActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $query = Doctrine::getTable('rtBlogPage')->getQuery();
-    $query->orderBy('page.id DESC');
-    $this->rt_blog_pages = $query->execute();
+    $query->orderBy('page.created_at DESC');
+
+    //$this->rt_blog_pages = $query->execute();
+
+    $this->pager = new sfDoctrinePager(
+      'rtBlogPage',
+      sfConfig::get('app_rt_blog_max_per_page', 50)
+    );
+
+    $this->pager->setQuery($query);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)
