@@ -32,9 +32,7 @@ class BasertBlogPageAdminActions extends sfActions
   {
     $query = Doctrine::getTable('rtBlogPage')->getQuery();
     $query->orderBy('page.created_at DESC');
-
-    //$this->rt_blog_pages = $query->execute();
-
+    
     $this->pager = new sfDoctrinePager(
       'rtBlogPage',
       sfConfig::get('app_rt_blog_max_per_page', 50)
