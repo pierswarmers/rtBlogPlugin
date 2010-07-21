@@ -35,7 +35,7 @@ class BasertBlogPageAdminActions extends sfActions
     
     $this->pager = new sfDoctrinePager(
       'rtBlogPage',
-      sfConfig::get('app_rt_blog_max_per_page', 50)
+      sfConfig::get('app_rt_admin_pagination_limit', 50)
     );
 
     $this->pager->setQuery($query);
