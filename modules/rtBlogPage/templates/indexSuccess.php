@@ -12,7 +12,8 @@
         <<?php echo $heading_tag ?>><?php echo link_to($rt_blog_page->getTitle(), 'rt_blog_page_show',$rt_blog_page) ?></<?php echo $heading_tag ?>>
         <?php if(sfConfig::get('app_rt_blog_index_mode', 'full') === 'full'): ?>
           <div class="rt-container">
-            <?php include_partial('blog_page', array('rt_blog_page' => $rt_blog_page, 'sf_cache_key' => $rt_blog_page->getId())) ?>
+            <?php use_helper('rtSocialNetworking') ?>
+            <?php echo markdown_to_html($rt_blog_page->getContent(), $rt_blog_page, true); ?>
           </div>
         <?php elseif(sfConfig::get('app_rt_blog_index_mode') === 'description'): ?>
           <p><?php echo $rt_blog_page->getDescription(); ?></p>
