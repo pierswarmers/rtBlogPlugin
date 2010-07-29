@@ -14,6 +14,7 @@
           <div class="rt-container">
             <?php use_helper('rtSocialNetworking') ?>
             <?php echo markdown_to_html($rt_blog_page->getContent(), $rt_blog_page, true); ?>
+            <p class="rt-list-item-read-more"><em><?php echo link_to(__('Read more') . '&rarr;', 'rt_blog_page_show',$rt_blog_page) ?></em></p>
           </div>
         <?php elseif(sfConfig::get('app_rt_blog_index_mode') === 'description'): ?>
           <p><?php echo $rt_blog_page->getDescription(); ?></p>
