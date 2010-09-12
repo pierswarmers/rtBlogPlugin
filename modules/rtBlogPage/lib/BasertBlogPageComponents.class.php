@@ -19,12 +19,22 @@ class BasertBlogPageComponents extends sfComponents
 {
   public function executeLatest(sfWebRequest $request)
   {
+    $this->rt_blog_posts = $this->getQuery()->execute();
+  }
+
+  public function executeLatestSummary(sfWebRequest $request)
+  {
+    $this->rt_blog_posts = $this->getQuery()->execute();
+  }
+
+  protected function getQuery()
+  {
     $query = Doctrine::getTable('rtBlogPage')->addSiteQuery()
              ->orderBy('page.id DESC')
              ->limit(10);
 
     $query = Doctrine::getTable('rtBlogPage')->addPublishedQuery($query);
-             
-    $this->rt_blog_posts = $query->execute();
+
+    return $query;
   }
 }
