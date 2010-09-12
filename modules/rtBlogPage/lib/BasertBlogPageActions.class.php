@@ -37,12 +37,9 @@ class BasertBlogPageActions extends sfActions
   {    
     $query = Doctrine::getTable('rtBlogPage')->addSiteQuery();
     $query->orderBy('page.id DESC');
-    
-    if(!$this->isAdmin())
-    {
-      $query = Doctrine::getTable('rtBlogPage')->addPublishedQuery($query);
-    }
-    
+
+    $query = Doctrine::getTable('rtBlogPage')->addPublishedQuery($query);
+
     $this->pager = new sfDoctrinePager(
       'rtBlogPage',
       sfConfig::get('app_rt_blog_max_per_page', 10)
