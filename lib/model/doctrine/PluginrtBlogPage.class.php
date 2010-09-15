@@ -16,4 +16,19 @@ abstract class PluginrtBlogPage extends BasertBlogPage
   {
     return 'Blog Post';
   }
+
+  public function getYear()
+  {
+    return date('Y',strtotime($this->getPublishedFrom()));
+  }
+
+  public function getMonth()
+  {
+    return date('m',strtotime($this->getPublishedFrom()));
+  }
+
+  public function getDay()
+  {
+    return date('d',strtotime($this->getPublishedFrom()));
+  }
 }
