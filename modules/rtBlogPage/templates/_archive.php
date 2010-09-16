@@ -1,6 +1,6 @@
 <?php $year_header = ''; ?>
 <?php if($rt_blog_posts): ?>
-<dl>
+<dl class="rt-blog-page-archive">
   <?php $i=0; foreach($rt_blog_posts as $rt_blog_post): ?>
     <?php $month_name = date("F", mktime(0, 0, 0, $rt_blog_post['month'], 1, $rt_blog_post['year'])); ?>
     <?php if($year_header != $rt_blog_post['year']): ?>
