@@ -1,7 +1,4 @@
-<?php
-  $options = isset($options) ? $options->getRawValue() : array();
-  $year_header = '';
-?>
+<?php $year_header = ''; ?>
 <?php if($rt_blog_posts): ?>
 <dl>
   <?php $i=0; foreach($rt_blog_posts as $rt_blog_post): ?>
