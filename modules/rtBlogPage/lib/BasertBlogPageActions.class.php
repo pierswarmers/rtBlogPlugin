@@ -37,7 +37,7 @@ class BasertBlogPageActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $query = Doctrine::getTable('rtBlogPage')->addSiteQuery();
-    $query->orderBy('page.id DESC');
+    $query->orderBy('page.published_from DESC');
 
     $query = Doctrine::getTable('rtBlogPage')->addPublishedQuery($query);
 
