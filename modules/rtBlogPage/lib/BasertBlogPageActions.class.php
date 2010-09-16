@@ -30,15 +30,35 @@ class BasertBlogPageActions extends sfActions
 
   /**
    * Executes the index page.
+   * 
    * @param sfWebRequest $request
    * @property Test $_page
    */
   public function executeIndex(sfWebRequest $request)
-  {    
+  {
     $query = Doctrine::getTable('rtBlogPage')->addSiteQuery();
     $query->orderBy('page.id DESC');
 
     $query = Doctrine::getTable('rtBlogPage')->addPublishedQuery($query);
+
+    $year  = $request->hasParameter('year') ? $request->getParameter('year') : null;
+    $month = $request->hasParameter('month') ? $request->getParameter('month') : null;
+    $day   = $request->hasParameter('day') ? $request->getParameter('day') : null;
+    if($request->hasParameter('year') && $request->hasParameter('month') && $request->hasParameter('day'))
+    {
+      $query->andWhere('page.published_from >= ?',sprintf('%s-%s-%s 00:00:00', $year, $month, $day));
+      $query->andWhere('page.published_from <= ?',sprintf('%s-%s-%s 00:00:00', $year, $month, $day+1));
+    }
+    elseif($request->hasParameter('year') && $request->hasParameter('month'))
+    {
+      $query->andWhere('page.published_from >= ?',sprintf('%s-%s-%s 00:00:00', $year, $month, 1));
+      $query->andWhere('page.published_from <= ?',sprintf('%s-%s-%s 00:00:00', ($month < 12) ? $year : $year+1, ($month < 12) ? $month+1 : 1, 1));
+    }
+    elseif($request->hasParameter('year'))
+    {
+      $query->andWhere('page.published_from >= ?',sprintf('%s-%s-%s 00:00:00', $year, 1, 1));
+      $query->andWhere('page.published_from <= ?',sprintf('%s-%s-%s 00:00:00', $year+1, 1, 1));
+    }
 
     $this->pager = new sfDoctrinePager(
       'rtBlogPage',
