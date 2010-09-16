@@ -27,6 +27,31 @@ class BasertBlogPageComponents extends sfComponents
     $this->rt_blog_posts = $this->getQuery()->execute();
   }
 
+  public function executeArchive(sfWebRequest $request)
+  {
+    $months = 12;
+    if($this->getVar('options'))
+    {
+      $options = $this->getVar('options');
+      $months = $options['months'];
+    }
+
+    $previous_year  = date('Y',strtotime(sprintf("-%s months",$months)));
+    $previous_month = date('m',strtotime(sprintf("-%s months",$months)));
+    $current_year  = date('Y');
+    $current_month = date('m');
+    
+    $q = Doctrine::getTable('rtBlogPage')->addSiteQuery()
+          ->select('YEAR(page.published_from) as year, MONTH(page.published_from) as month, count(page.published_from) as count')
+          ->andWhere('page.published_from >= ?',sprintf('%s-%s-%s 00:00:00', $previous_year, $previous_month, 1))
+          ->andWhere('page.published_from <= ?',sprintf('%s-%s-%s 00:00:00', $current_year, $current_month, 1))
+          ->groupBy('MONTH(page.published_from)')
+          ->orderBy('YEAR(page.published_from) DESC, MONTH(page.published_from) DESC');
+    $posts = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+    
+    $this->rt_blog_posts = $posts;
+  }
+
   protected function getQuery()
   {
     $query = Doctrine::getTable('rtBlogPage')->addSiteQuery()
