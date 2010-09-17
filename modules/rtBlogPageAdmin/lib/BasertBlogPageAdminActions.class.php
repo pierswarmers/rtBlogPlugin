@@ -43,17 +43,6 @@ class BasertBlogPageAdminActions extends sfActions
     $this->pager->init();
   }
 
-  private function getCountPerPage(sfWebRequest $request)
-  {
-    $count = sfConfig::get('app_rt_admin_pagination_limit', 50);
-    if($request->hasParameter('show_more'))
-    {
-      $count = sfConfig::get('app_rt_admin_pagination_per_page_multiple', 2) * $count;
-    }
-
-    return $count;
-  }
-
   public function executeShow(sfWebRequest $request)
   {
     rtSiteToolkit::siteRedirect($this->getrtBlogPage($request));
@@ -165,22 +154,24 @@ class BasertBlogPageAdminActions extends sfActions
     $this->getUser()->setFlash('default_error', true, false);
   }
 
-  private function clearCache($rt_blog_page = null)
+  protected function getCountPerPage(sfWebRequest $request)
   {
-    $cache = $this->getContext()->getViewCacheManager();
-    
-    if ($cache)
+    $count = sfConfig::get('app_rt_admin_pagination_limit', 50);
+    if($request->hasParameter('show_more'))
     {
-      $cache->remove('rtBlogPage/index'); // index page
-      $cache->remove('rtBlogPage/index?page=*'); // index with page
-      $cache->remove('rtBlogPage/feed?format=*'); // feed
-      $cache->remove('@sf_cache_partial?module=rtBlogPage&action=_latest&sf_cache_key=*');
-      
-      if($rt_blog_page)
-      {
-        $cache->remove(sprintf('rtBlogPage/show?id=%s&slug=%s', $rt_blog_page->getId(), $rt_blog_page->getSlug())); // show page
-        $cache->remove('@sf_cache_partial?module=rtBlogPage&action=_blog_page&sf_cache_key='.$rt_blog_page->getId()); // show page partial.
-      }
+      $count = sfConfig::get('app_rt_admin_pagination_per_page_multiple', 2) * $count;
     }
+
+    return $count;
+  }
+
+  /**
+   * Clean the cache relating to rtBlogPage
+   * 
+   * @param rtBlogPage $rt_blog_page
+   */
+  protected function clearCache(rtBlogPage $rt_blog_page = null)
+  {
+    rtBlogPageCacheToolkit::clearCache($rt_blog_page);
   }
 }

@@ -14,5 +14,7 @@ feed:
   with_layout: true
 _latest:
   enabled:     true
+_archive:
+  enabled:     true
 
 <?php endif; ?>
