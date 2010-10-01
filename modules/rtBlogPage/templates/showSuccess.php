@@ -7,4 +7,9 @@
     <?php echo $rt_blog_page->getTitle() ?>
   </h1>
   <?php include_partial('blog_page', array('rt_blog_page' => $rt_blog_page, 'sf_cache_key' => $rt_blog_page->getId())) ?>
+  
+  <?php if(in_array($rt_blog_page->getCommentStatus(), array('open', 'user'))): ?>
+  <?php include_component('rtComment', 'list', array('model' => 'rtBlogPage', 'model_id' => $rt_blog_page->getId(), 'title' => $rt_blog_page->getTitle())) ?>
+  <?php include_component('rtComment', 'form', array('model' => 'rtBlogPage', 'model_id' => $rt_blog_page->getId())) ?>
+  <?php endif; ?>
 </div>
