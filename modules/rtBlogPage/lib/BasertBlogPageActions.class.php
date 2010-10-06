@@ -36,14 +36,15 @@ class BasertBlogPageActions extends sfActions
    */
   public function executeIndex(sfWebRequest $request)
   {
-    $query = Doctrine::getTable('rtBlogPage')->addSiteQuery();
+    $table = Doctrine::getTable('rtBlogPage');
+    $query = $table->addSiteQuery();
+    $query = $table->addPublishedQuery($query);
     $query->orderBy('page.published_from DESC');
-
-    $query = Doctrine::getTable('rtBlogPage')->addPublishedQuery($query);
 
     $year  = $request->hasParameter('year') ? $request->getParameter('year') : null;
     $month = $request->hasParameter('month') ? $request->getParameter('month') : null;
     $day   = $request->hasParameter('day') ? $request->getParameter('day') : null;
+
     if($request->hasParameter('year') && $request->hasParameter('month') && $request->hasParameter('day'))
     {
       $query->andWhere('page.published_from >= ?',sprintf('%s-%s-%s 00:00:00', $year, $month, $day));
@@ -110,16 +111,16 @@ class BasertBlogPageActions extends sfActions
           ->orderBy('page.id DESC');
     $posts = $query->execute();
     
-    foreach ($posts as $post)
+    foreach ($posts as $rt_blog_page)
     {
       $item = new sfFeedItem();
-      $item->setTitle($post->getTitle());
-      $item->setLink('@rt_blog_page_show?id='.$post->getId().'&slug='.$post->getSlug());
-      $item->setAuthorName($post->getAuthorName());
-      $item->setAuthorEmail($post->getAuthorEmail());
-      $item->setPubdate(strtotime($post->getCreatedAt()));
-      $item->setUniqueId($post->getSlug());
-      $item->setDescription($post->getDescription());
+      $item->setTitle($rt_blog_page->getTitle());
+      $item->setLink($this->generateUrl('rt_blog_page_show', $rt_blog_page, array('absolute' => true)));
+      $item->setAuthorName($rt_blog_page->getAuthorName());
+      $item->setAuthorEmail($rt_blog_page->getAuthorEmail());
+      $item->setPubdate(strtotime($rt_blog_page->getCreatedAt()));
+      $item->setUniqueId($rt_blog_page->getSlug());
+      $item->setDescription($rt_blog_page->getDescription());
 
       $feed->addItem($item);
     }
