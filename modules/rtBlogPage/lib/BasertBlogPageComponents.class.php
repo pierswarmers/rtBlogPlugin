@@ -31,11 +31,11 @@ class BasertBlogPageComponents extends sfComponents
   {
     $table = Doctrine::getTable('rtBlogPage');
 
-    $q = $table->addSiteQuery();
-    $q = $table->addPublishedQuery($q);
-    $q->select('YEAR(page.published_from) as year, MONTH(page.published_from) as month, count(page.published_from) as count')
-      ->groupBy('MONTH(page.published_from)')
-      ->orderBy('YEAR(page.published_from) DESC, MONTH(page.published_from) DESC');
+    $q = $table->addPublishedQuery();
+    $q = $table->addSiteQuery($q);
+    $q->select('YEAR(page.published_from) as year, MONTH(page.published_from) as month, count(page.published_from) as count, page.site_id')
+      ->groupBy('year, month')
+      ->orderBy('year DESC, month DESC');
 
     $this->rt_blog_posts = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
   }
