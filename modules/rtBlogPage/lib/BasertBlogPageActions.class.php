@@ -48,17 +48,17 @@ class BasertBlogPageActions extends sfActions
     if($request->hasParameter('year') && $request->hasParameter('month') && $request->hasParameter('day'))
     {
       $query->andWhere('page.published_from >= ?',sprintf('%s-%s-%s 00:00:00', $year, $month, $day));
-      $query->andWhere('page.published_from <= ?',sprintf('%s-%s-%s 00:00:00', $year, $month, $day+1));
+      $query->andWhere('page.published_from < ?',sprintf('%s-%s-%s 00:00:00', $year, $month, $day+1));
     }
     elseif($request->hasParameter('year') && $request->hasParameter('month'))
     {
       $query->andWhere('page.published_from >= ?',sprintf('%s-%s-%s 00:00:00', $year, $month, 1));
-      $query->andWhere('page.published_from <= ?',sprintf('%s-%s-%s 00:00:00', ($month < 12) ? $year : $year+1, ($month < 12) ? $month+1 : 1, 1));
+      $query->andWhere('page.published_from < ?',sprintf('%s-%s-%s 00:00:00', ($month < 12) ? $year : $year+1, ($month < 12) ? $month+1 : 1, 1));
     }
     elseif($request->hasParameter('year'))
     {
       $query->andWhere('page.published_from >= ?',sprintf('%s-%s-%s 00:00:00', $year, 1, 1));
-      $query->andWhere('page.published_from <= ?',sprintf('%s-%s-%s 00:00:00', $year+1, 1, 1));
+      $query->andWhere('page.published_from < ?',sprintf('%s-%s-%s 00:00:00', $year+1, 1, 1));
     }
 
     $this->pager = new sfDoctrinePager(
