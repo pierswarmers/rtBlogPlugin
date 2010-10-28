@@ -1,7 +1,5 @@
 <?php use_helper('I18N', 'Date', 'rtText', 'rtForm', 'rtDate', 'rtSite') ?>
-<div class="rt-blog-page rt-list rt-primary-container">
 <?php if(count($pager->getResults()) > 0): ?>
-  <div class="rt-container rt-collection">
     <?php $i = 1; foreach ($pager->getResults() as $rt_blog_page): ?>
       <div class="rt-list-item rt-list-item-<?php echo $i; ?> rt-admin-edit-tools-panel">
         <?php echo link_to(__('Edit'), 'rtBlogPageAdmin/edit?id='.$rt_blog_page->getId(), array('class' => 'rt-admin-edit-tools-trigger')) ?>
@@ -20,9 +18,7 @@
         <?php endif; ?>
       </div>
     <?php $i++; endforeach; ?>
-  </div>
 <?php else: ?>
   <p class="notice"><?php echo __('No posts available yet, please visit again later.') ?></p>
 <?php endif; ?>
 <?php include_partial('rtAdmin/pagination_public', array('pager' => $pager)); ?>
-</div>
