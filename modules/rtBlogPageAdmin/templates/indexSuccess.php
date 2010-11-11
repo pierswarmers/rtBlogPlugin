@@ -8,6 +8,12 @@
 
 <?php include_partial('rtAdmin/flashes') ?>
 
+<script type="text/javascript">
+  $(function() {
+    enablePublishToggle('<?php echo url_for('rtBlogPageAdmin/toggle') ?>');
+  });
+</script>
+
 <table>
   <thead>
     <tr>
@@ -22,7 +28,10 @@
     <?php foreach ($pager->getResults() as $rt_blog_page): ?>
     <tr>
       <td><a href="<?php echo url_for('rtBlogPageAdmin/edit?id='.$rt_blog_page->getId()) ?>"><?php echo $rt_blog_page->getTitle() ?></a></td>
-      <td><?php echo rt_nice_boolean($rt_blog_page->getPublished()) ?></td>
+      <td class="rt-admin-publish-toggle">
+        <?php echo rt_nice_boolean($rt_blog_page->getPublished()) ?>
+        <div style="display:none;"><?php echo $rt_blog_page->getId() ?></div>
+      </td>
       <td><?php echo link_to_if($rt_blog_page->version > 1, $rt_blog_page->version, 'rtBlogPageAdmin/versions?id='.$rt_blog_page->getId()) ?></td>
       <td><?php echo $rt_blog_page->getCreatedAt() ?></td>
       <td>

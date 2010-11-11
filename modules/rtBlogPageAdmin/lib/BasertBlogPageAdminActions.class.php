@@ -129,7 +129,22 @@ class BasertBlogPageAdminActions extends sfActions
     $this->clearCache($this->rt_blog_page);
     $this->redirect('rtBlogPageAdmin/edit?id='.$this->rt_blog_page->getId());
   }
-  
+
+  public function executeToggle(sfWebRequest $request)
+  {
+    $rt_blog_page = Doctrine_Core::getTable('rtBlogPage')->find(array($request->getParameter('id')));
+    if(!$rt_blog_page)
+    {
+      $this->status = 'error';
+      return sfView::SUCCESS;
+    }
+
+    $rt_blog_page->setPublished(!$rt_blog_page->getPublished());
+    $this->status = $rt_blog_page->getPublished() ? 'activated' : 'deactivated';
+    $rt_blog_page->save();
+    $this->clearCache($rt_blog_page);
+  }
+
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
