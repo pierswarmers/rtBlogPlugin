@@ -4,7 +4,7 @@
 
 <?php slot('rt-tools') ?>
 <?php include_partial('rtAdmin/standard_modal_tools', array('object' => new rtBlogPage))?>
-<h2><?php echo __('Blog Pages Summary') ?></h2>
+<h2><?php echo __('Blog Posts Summary') ?></h2>
 <dl class="rt-admin-summary-panel clearfix">
   <dt class="rt-admin-primary"><?php echo __('Total') ?></dt>
   <dd class="rt-admin-primary"><?php echo $stats['total']['count'] ?></dd>
