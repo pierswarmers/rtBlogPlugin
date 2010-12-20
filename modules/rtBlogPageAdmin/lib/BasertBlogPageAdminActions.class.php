@@ -41,6 +41,27 @@ class BasertBlogPageAdminActions extends sfActions
     $this->pager->setQuery($query);
     $this->pager->setPage($request->getParameter('page', 1));
     $this->pager->init();
+
+    $this->stats = $this->stats();
+  }
+
+  private function stats()
+  {
+    // Dates
+    $date_now         = date("Y-m-d H:i:s");
+
+    // SQL queries
+    $con = Doctrine_Manager::getInstance()->getCurrentConnection();
+
+    $result_blog_pages_total               = $con->fetchAssoc("select count(id) as count from rt_blog_page");
+    $result_blog_pages_total_published     = $con->fetchAssoc("select count(id) as count from rt_blog_page where published = 1 and (published_from <= '".$date_now."' OR published_from IS NULL) and (published_to > '".$date_now."' OR published_to IS NULL)");
+
+    // Create array
+    $stats = array();
+    $stats['total']            = $result_blog_pages_total[0] != '' ? $result_blog_pages_total[0] : 0;
+    $stats['total_published']  = $result_blog_pages_total_published[0] != '' ? $result_blog_pages_total_published[0] : 0;
+
+    return $stats;
   }
 
   public function executeShow(sfWebRequest $request)
