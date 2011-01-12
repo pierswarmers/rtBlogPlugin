@@ -42,9 +42,11 @@ class BasertBlogPageComponents extends sfComponents
 
   protected function getQuery()
   {
+    $limit = is_null($this->getVar('limit')) ? 10 : $this->getVar('limit');
+    
     $query = Doctrine::getTable('rtBlogPage')->addSiteQuery()
              ->orderBy('page.id DESC')
-             ->limit(10);
+             ->limit($limit);
 
     $query = Doctrine::getTable('rtBlogPage')->addPublishedQuery($query);
 
