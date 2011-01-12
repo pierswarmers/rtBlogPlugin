@@ -1,7 +1,7 @@
 <?php use_helper('I18N', 'Date', 'rtText', 'rtForm', 'rtDate', 'rtSite') ?>
-
+<?php $date = is_null($rt_blog_page->getPublishedFrom()) ? $rt_blog_page->getCreatedAt() : $rt_blog_page->getPublishedFrom(); ?>
 <?php slot('rt-title') ?>
-<span class="date"><?php echo format_date($rt_blog_page->getPublishedFrom(), 'D', $sf_user->getCulture()) ?></span>
+<span class="date"><?php echo format_date($date, 'D', $sf_user->getCulture()) ?></span>
 <?php echo $rt_blog_page->getTitle() ?>
 <?php end_slot(); ?>
 
