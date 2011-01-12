@@ -39,6 +39,7 @@ class BasertBlogPageActions extends sfActions
     $table = Doctrine::getTable('rtBlogPage');
     $query = $table->addSiteQuery();
     $query = $table->addPublishedQuery($query);
+    $query->orderBy('page.created_at DESC');
     $query->orderBy('page.published_from DESC');
 
     $year  = $request->hasParameter('year') ? $request->getParameter('year') : null;
