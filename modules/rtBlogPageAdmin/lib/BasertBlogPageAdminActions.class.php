@@ -48,7 +48,7 @@ class BasertBlogPageAdminActions extends sfActions
   private function stats()
   {
     // Dates
-    $date_now         = date("Y-m-d H:i:s");
+    $date_now = date("Y-m-d H:i:s");
 
     // SQL queries
     $con = Doctrine_Manager::getInstance()->getCurrentConnection();
@@ -103,6 +103,7 @@ class BasertBlogPageAdminActions extends sfActions
     $rt_blog_page = $this->getrtBlogPage($request);
     $rt_blog_page->delete();
     $this->clearCache($rt_blog_page);
+    $this->getDispatcher($request)->notify(new sfEvent($this, 'doctrine.admin.delete_object', array('object' => $rt_blog_page)));
     $this->redirect('rtBlogPageAdmin/index');
   }
 
@@ -174,6 +175,8 @@ class BasertBlogPageAdminActions extends sfActions
       $rt_blog_page = $form->save();
       $this->clearCache($rt_blog_page);
 
+      $this->getDispatcher($request)->notify(new sfEvent($this, 'doctrine.admin.save_object', array('object' => $rt_blog_page)));
+
       $action = $request->getParameter('rt_post_save_action', 'index');
 
       if($action == 'edit')
@@ -209,5 +212,13 @@ class BasertBlogPageAdminActions extends sfActions
   protected function clearCache(rtBlogPage $rt_blog_page = null)
   {
     rtBlogPageCacheToolkit::clearCache($rt_blog_page);
+  }
+
+  /**
+   * @return sfEventDispatcher
+   */
+  protected function getDispatcher(sfWebRequest $request)
+  {
+    return ProjectConfiguration::getActive()->getEventDispatcher(array('request' => $request));
   }
 }
