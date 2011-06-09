@@ -6,32 +6,38 @@ use_helper('I18N', 'Date', 'rtText')
 
 ?>
 
+<?php slot('rt-title') ?>
+
+  <div class="rt-section-header">
+    <h1><?php echo __('Latest News') ?></h1>
+  </div>
+
+<?php end_slot(); ?>
+
 <?php if(count($pager->getResults()) > 0): ?>
 
   <?php $i = 1; foreach ($pager->getResults() as $rt_blog_page): ?>
 
-    <div class="section rt-site-page">
+    <div class="rt-section rt-blog-page">
 
-      <div class="section-tools-header">
-        <?php echo link_to(__('Edit'), 'rtBlogPageAdmin/edit?id='.$rt_blog_page->getId(), array('class' => 'rt-admin-edit-tools-trigger')) ?>
+      <div class="rt-section-tools-header rt-admin-tools">
+        <?php echo link_to(__('Edit Post'), 'rtBlogPageAdmin/edit?id='.$rt_blog_page->getId(), array('class' => 'rt-admin-edit-tools-trigger')) ?>
       </div>
 
-      <?php if(sfConfig::get('app_rt_templates_headers_embedded', true)): ?>
-      <div class="section-header">
-        <h1><?php echo $rt_blog_page->getTitle() ?></h1>
-        <div class="metas">
+      <div class="rt-section-header">
+        <h1><?php echo link_to($rt_blog_page->getTitle(), 'rt_blog_page_show', $rt_blog_page) ?></h1>
+        <div class="rt-metas">
           <?php echo __('By') . ' ' . $rt_blog_page->getAuthorName() ?>
           <?php echo __('on') . ' ' . format_date($rt_blog_page->getPublishedFrom(), 'D', $sf_user->getCulture()) ?>
         </div>
       </div>
-      <?php endif; ?>
 
-      <div class="section-content">
+      <div class="rt-section-content">
         <?php $content_method = sfConfig::get('app_rt_blog_index_content_method', 'getContent'); ?>
         <?php echo markdown_to_html($rt_blog_page->$content_method(), $rt_blog_page); ?>
       </div>
 
-      <div class="section-tools-footer">
+      <div class="rt-section-tools-footer">
         <?php echo link_to(__('Read more') . '&rarr;', 'rt_blog_page_show', $rt_blog_page) ?>
       </div>
 
