@@ -6,13 +6,7 @@ use_helper('I18N', 'Date', 'rtText')
 
 ?>
 
-<?php slot('rt-title') ?>
-
-  <div class="rt-section-header">
-    <h1><?php echo __('Latest News') ?></h1>
-  </div>
-
-<?php end_slot(); ?>
+<?php slot('rt-title', __('Latest News')) ?>
 
 <?php if(count($pager->getResults()) > 0): ?>
 
