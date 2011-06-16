@@ -28,7 +28,7 @@ use_helper('I18N', 'Date', 'rtText')
 
       <div class="rt-section-content">
         <?php $content_method = sfConfig::get('app_rt_blog_index_content_method', 'getContent'); ?>
-        <?php echo markdown_to_html($rt_blog_page->$content_method(), $rt_blog_page); ?>
+        <?php echo markdown_to_html($rt_blog_page->$content_method(), $rt_blog_page, true); ?>
       </div>
 
       <div class="rt-section-tools-footer">
