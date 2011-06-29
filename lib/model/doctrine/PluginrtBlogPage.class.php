@@ -31,4 +31,19 @@ abstract class PluginrtBlogPage extends BasertBlogPage
   {
     return date('d',strtotime($this->getPublishedFrom()));
   }
+  
+  /**
+   * Return all attached string, imploded into a comma separated string.
+   * 
+   * @return string
+   */
+  public function getCategoriesAsString()
+  {
+    $categories = array();
+    foreach($this->getCategories() as $category)
+    {
+      $categories[] = $category->getTitle();
+    }
+    return implode(', ', $categories);
+  }  
 }

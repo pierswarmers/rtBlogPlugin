@@ -2,7 +2,7 @@
 <?php use_javascripts_for_form($form) ?>
 <?php use_javascript('/rtCorePlugin/vendor/jquery/js/jquery.min.js') ?>
 <?php use_javascript('/rtCorePlugin/vendor/jquery/js/jquery.tools.min.js', 'last'); ?>
-<?php use_helper('I18N', 'Date', 'rtText', 'rtForm', 'rtDate') ?>
+<?php use_helper('I18N', 'Date', 'rtText', 'rtForm', 'rtDate', 'rtAdmin') ?>
 
 <?php slot('rt-tools') ?>
 <?php include_partial('rtAdmin/standard_modal_tools', array('show_route_handle' => 'admin', 'object' => $form->getObject()))?>
@@ -23,20 +23,8 @@
   <table>
     <tbody>
       <?php echo $form->renderGlobalErrors() ?>
-      <tr>
-        <th><?php echo $form['title']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['title']->renderError() ?>
-          <?php echo $form['title'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['content']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['content']->renderError() ?>
-          <?php echo $form['content'] ?>
-        </td>
-      </tr>
+      <?php echo render_form_row($form['title']); ?>
+      <?php echo render_form_row($form['content']); ?>
     </tbody>
   </table>
 
@@ -44,71 +32,38 @@
     <h2><?php echo __('Publish Status') ?></h2>
     <table class="rt-admin-toggle-panel-content">
       <tbody>
-        <tr>
-          <th><?php echo $form['published']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['published']->renderError() ?>
-            <?php echo $form['published'] ?>
-          </td>
-        </tr>
-        <tr>
-          <th><?php echo $form['published_from']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['published_from']->renderError() ?>
-            <?php echo $form['published_from'] ?>
-          </td>
-        </tr>
-        <tr>
-          <th><?php echo $form['published_to']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['published_to']->renderError() ?>
-            <?php echo $form['published_to'] ?>
-          </td>
-        </tr>
+        <?php echo render_form_row($form['published']); ?>
+        <?php echo render_form_row($form['published_from']); ?>
+        <?php echo render_form_row($form['published_to']); ?>
       </tbody>
     </table>
   </div>
 
   <div class="rt-admin-toggle-panel">
     <h2><?php echo __('Metadata and SEO') ?></h2>
-    <table class="rt-admin-toggle-panel-content">
-      <tbody>
-        <tr>
-          <th><?php echo $form['description']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['description']->renderError() ?>
-            <?php echo $form['description'] ?>
-          </td>
-        </tr>
-        <tr>
-          <th><?php echo $form['tags']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['tags']->renderError() ?>
-            <?php echo $form['tags'] ?>
-          </td>
-        </tr>
-        <tr>
-          <th><?php echo $form['searchable']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['searchable']->renderError() ?>
-            <?php echo $form['searchable'] ?>
-          </td>
-        </tr>
+    <table class="rt-admin-toggle-panel-content" id="rtSortableCategories">
+      <tbody>      
+        <?php echo render_form_row($form['description']); ?>
+        <?php echo render_form_row($form['tags']); ?>
+        <?php if(isset ($form['rt_categories_list'])): ?>
+          <?php echo render_form_row($form['rt_categories_list']); ?>        
+        <?php endif; ?>
       </tbody>
     </table>
+    <script type="text/javascript">
+    $(function() {
+      $("#rtSortableCategories ul.checkbox_list").first().sortable({
+        revert: true
+      });
+    });
+    </script>
   </div>
 
   <div class="rt-admin-toggle-panel">
     <h2><?php echo __('Comments') ?></h2>
     <table class="rt-admin-toggle-panel-content">
       <tbody>
-        <tr>
-          <th><?php echo $form['comment_status']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['comment_status']->renderError() ?>
-            <?php echo $form['comment_status'] ?>
-          </td>
-        </tr>
+        <?php echo render_form_row($form['comment_status']); ?>
       </tbody>
     </table>
   </div>
@@ -117,20 +72,8 @@
     <h2><?php echo __('Author Details') ?></h2>
     <table class="rt-admin-toggle-panel-content">
       <tbody>
-        <tr>
-          <th><?php echo $form['author_name']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['author_name']->renderError() ?>
-            <?php echo $form['author_name'] ?>
-          </td>
-        </tr>
-        <tr>
-          <th><?php echo $form['author_email']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['author_email']->renderError() ?>
-            <?php echo $form['author_email'] ?>
-          </td>
-        </tr>
+        <?php echo render_form_row($form['author_name']); ?>
+        <?php echo render_form_row($form['author_email']); ?>        
       </tbody>
     </table>
   </div>
@@ -139,21 +82,9 @@
     <h2><?php echo __('Location and Referencing') ?></h2>
     <table class="rt-admin-toggle-panel-content">
       <tbody>
-        <tr>
-          <th><?php echo $form['slug']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['slug']->renderError() ?>
-            <?php echo $form['slug'] ?>
-          </td>
-        </tr>
+        <?php echo render_form_row($form['slug']); ?>
       <?php if(isset($form['site_id'])): ?>
-        <tr>
-          <th><?php echo $form['site_id']->renderLabel() ?></th>
-          <td>
-            <?php echo $form['site_id']->renderError() ?>
-            <?php echo $form['site_id'] ?>
-          </td>
-        </tr>
+        <?php echo render_form_row($form['site_id']); ?>
       <?php endif; ?>
       </tbody>
     </table>
