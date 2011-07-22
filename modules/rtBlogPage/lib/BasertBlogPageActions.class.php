@@ -65,6 +65,11 @@ class BasertBlogPageActions extends sfActions
       'rtBlogPage',
       $this->getCountPerPage($request)
     );
+
+    if(count($this->pager->getResults()) == 0)
+    {
+      $this->getUser()->setFlash('notice', 'No posts available yet, please visit again later.', false);
+    }
     
     $this->pager->setQuery($query);
     $this->pager->setPage($request->getParameter('page', 1));

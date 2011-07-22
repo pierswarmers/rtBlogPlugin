@@ -13,13 +13,14 @@ use_helper('I18N', 'Date', 'rtText')
   <?php $i = 1; foreach ($pager->getResults() as $rt_blog_page): ?>
 
     <div class="rt-section rt-blog-page">
-
+      <!--RTAS
       <div class="rt-section-tools-header rt-admin-tools">
         <?php echo link_to(__('Edit Post'), 'rtBlogPageAdmin/edit?id='.$rt_blog_page->getId(), array('class' => 'rt-admin-edit-tools-trigger')) ?>
       </div>
+      RTAS-->
 
       <div class="rt-section-header">
-        <h1><?php echo link_to($rt_blog_page->getTitle(), 'rt_blog_page_show', $rt_blog_page) ?></h1>
+        <h2><?php echo link_to($rt_blog_page->getTitle(), 'rt_blog_page_show', $rt_blog_page) ?></h2>
         <div class="rt-metas">
           <?php echo __('By') . ' ' . $rt_blog_page->getAuthorName() ?>
           <?php echo __('on') . ' ' . format_date($rt_blog_page->getPublishedFrom(), 'D', $sf_user->getCulture()) ?>
@@ -41,7 +42,11 @@ use_helper('I18N', 'Date', 'rtText')
 
 <?php else: ?>
 
-  <p class="notice"><?php echo __('No posts available yet, please visit again later.') ?></p>
+  <!--RTAS
+  <div class="rt-section-tools-header rt-admin-tools">
+    <?php echo link_to(__('Create Your First Post'), 'rtBlogPageAdmin/new', array('class' => 'rt-admin-edit-tools-trigger')) ?>
+  </div>
+  RTAS-->
 
 <?php endif; ?>
 
