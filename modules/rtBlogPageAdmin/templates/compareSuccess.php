@@ -3,7 +3,7 @@
 <h1><?php echo __('Comparing Version') ?> <?php echo $version_1 ?> to <?php echo $version_2 ?></h1>
 
 <?php slot('rt-tools') ?>
-<?php include_partial('rtAdmin/standard_modal_tools', array('object' => $rt_blog_page))?>
+<?php include_partial('rtAdmin/standard_modal_tools', array('object' => $k_person))?>
 <?php end_slot(); ?>
 
 <?php include_partial('rtAdmin/flashes') ?>
@@ -28,11 +28,11 @@
         <td>&nbsp;</td>
         <td>
           <ul class="rt-admin-tools">
-            <li><?php echo rt_ui_button('revert', 'rtBlogPageAdmin/Revert?id='.$rt_blog_page->getId().'&revert_to='.$version_1, 'arrowrefresh-1-e'); ?></li>
+            <li><?php echo rt_ui_button('revert', 'rtBlogPageAdmin/Revert?id='.$k_person->getId().'&revert_to='.$version_1, 'arrowrefresh-1-e'); ?></li>
           </ul>
         <td>
           <ul class="rt-admin-tools">
-            <li><?php echo rt_ui_button('revert', 'rtBlogPageAdmin/Revert?id='.$rt_blog_page->getId().'&revert_to='.$version_2, 'arrowrefresh-1-e'); ?></li>
+            <li><?php echo rt_ui_button('revert', 'rtBlogPageAdmin/Revert?id='.$k_person->getId().'&revert_to='.$version_2, 'arrowrefresh-1-e'); ?></li>
           </ul>
         </td>
       </tr>

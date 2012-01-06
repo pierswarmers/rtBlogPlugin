@@ -1,7 +1,6 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 <?php use_javascript('/rtCorePlugin/vendor/jquery/js/jquery.min.js') ?>
-<?php use_javascript('/rtCorePlugin/vendor/jquery/js/jquery.tools.min.js', 'last'); ?>
 <?php use_helper('I18N', 'Date', 'rtText', 'rtForm', 'rtDate', 'rtAdmin') ?>
 
 <?php slot('rt-tools') ?>

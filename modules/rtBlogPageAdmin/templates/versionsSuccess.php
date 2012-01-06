@@ -3,12 +3,12 @@
 <h1><?php echo __('Listing Versions') ?></h1>
 
 <?php slot('rt-tools') ?>
-<?php include_partial('rtAdmin/standard_modal_tools', array('object' => $rt_blog_page))?>
+<?php include_partial('rtAdmin/standard_modal_tools', array('object' => $k_person))?>
 <?php end_slot(); ?>
 
 <?php include_partial('rtAdmin/flashes') ?>
 
-<form id="rtAdminForm" action="<?php echo url_for('rtBlogPageAdmin/compare?id='.$rt_blog_page->getId()) ?>">
+<form id="rtAdminForm" action="<?php echo url_for('rtBlogPageAdmin/compare?id='.$k_person->getId()) ?>">
   <table class="stretch">
     <thead>
       <tr>
@@ -30,7 +30,7 @@
         <td><input type="radio" name="version2" value="<?php echo $version->version ?>" /></td>
         <td>
           <ul class="rt-admin-tools">
-            <li><?php echo rt_ui_button('revert', 'rtBlogPageAdmin/Revert?id='.$rt_blog_page->getId().'&revert_to='.$version->version, 'arrowrefresh-1-e'); ?></li>
+            <li><?php echo rt_ui_button('revert', 'rtBlogPageAdmin/Revert?id='.$k_person->getId().'&revert_to='.$version->version, 'arrowrefresh-1-e'); ?></li>
           </ul>
         </td>
       <?php endforeach; ?>
