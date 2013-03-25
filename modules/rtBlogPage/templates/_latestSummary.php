@@ -1,3 +1,5 @@
+<?php use_helper('I18N', 'Date', 'rtText', 'rtTemplate'); ?>
+
 <?php if($rt_blog_posts): ?>
   <?php foreach($rt_blog_posts as $rt_blog_post): ?>
     <h3><?php echo link_to($rt_blog_post->getTitle(), 'rt_blog_page_show',$rt_blog_post) ?></h3>
